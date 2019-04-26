@@ -21,6 +21,13 @@
         var timer = window.setInterval(() =>{
             displayData();
         }, 33);
+
+        function displayData(){
+            var txt = document.getElementById("txt");
+            txt.innerHTML = "x: " + aX + "<br>"
+                            + "y: " + aY + "<br>"
+                            + "z: " + aZ;
+        }
         </script>
     </body>
 </html>
