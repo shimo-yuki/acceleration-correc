@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>加速度の正確さ診断</title>
+    </head>
+
+    <body>
+        <div id="txt">ここにデータを表示</div>
+
+        <script>
+        var aX = 0, aY = 0, aZ = 0;
+
+        window.addEventListener("devicemotion", (dat) => {
+            aX = dat.accelerationIncludingGravity.x;
+            aY = dat.accelerationIncludingGravity.y;
+            aZ = dat.accelerationIncludingGravity.z;
+        });
+
+        var timer = window.setInterval(() =>{
+            displayData();
+        }, 33);
+        </script>
+    </body>
+</html>
