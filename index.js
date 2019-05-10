@@ -2,7 +2,7 @@
 
 var aX = 0, aY = 0, aZ = 0;
 var gX = [], gY = [], gZ = [];
-var z = [];
+
 window.addEventListener("devicemotion", (dat) => {
     aX = dat.accelerationIncludingGravity.x;
     aY = dat.accelerationIncludingGravity.y;
@@ -35,7 +35,6 @@ var id = setInterval(function(){
 /////////////////////////////////////////////////////////
 /////////////////////////表示系///////////////////////////
 function displayGraph(){
-    console.log('aa');
     ctx = document.getElementById("canvas").getContext("2d");
     window.myBar = new Chart(ctx, {
         type: 'line', 
@@ -54,7 +53,7 @@ var barChartData = {
     {
         label: 'y1',
         fill: false,
-        data: z,
+        data: aX,
         borderColor : "rgba(254,97,132,0.8)"
     },
     {
@@ -67,7 +66,7 @@ var barChartData = {
         label: 'y3',
         fill: false,
         data: gZ,
-        borderColor : "rgba(54,164,235,0.8)"
+        borderColor : "rgba(255,255,0,0.8)"
     },
     ],
 };
