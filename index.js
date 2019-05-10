@@ -44,10 +44,6 @@ function displayGraph(){
         type: 'line', 
         data: barChartData,
         options: {
-            responsive: false,
-            legend: {
-                display: false
-            },
             scales: {
                 yAxes: [                          
                     {
