@@ -57,6 +57,7 @@ var id = setInterval(function(){
     ctx = document.getElementById("canvas").getContext("2d");
     window.myBar = new Chart(ctx, {
         type: 'line', 
+        fill: false,
         // data: barChartData,
         data: {
             datasets: [{
