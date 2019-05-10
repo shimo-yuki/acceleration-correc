@@ -7,27 +7,15 @@
     </head>
 
     <body>
+        <input type="button" id="startbtn" value="スタート">
+        <input type="button" id="finishbtn" value="終了">
         <div id="txt">ここにデータを表示</div>
-
-        <script>
-        var aX = 0, aY = 0, aZ = 0;
-
-        window.addEventListener("devicemotion", (dat) => {
-            aX = dat.accelerationIncludingGravity.x;
-            aY = dat.accelerationIncludingGravity.y;
-            aZ = dat.accelerationIncludingGravity.z;
-        });
-
-        var timer = window.setInterval(() =>{
-            displayData();
-        }, 33);
-
-        function displayData(){
-            var txt = document.getElementById("txt");
-            txt.innerHTML = "x: " + aX + "<br>"
-                            + "y: " + aY + "<br>"
-                            + "z: " + aZ;
-        }
-        </script>
+        <div class="container" style="width:70%">
+            <canvas id="canvas"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+        <script src="index.js"></script>
+        
     </body>
 </html>
