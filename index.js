@@ -29,6 +29,7 @@ var id = setInterval(function(){
     gZ.push(aZ);
     if(count % 5 == 0){　
       displayGraph();
+      gX = [], gY = [], gZ = [];
     }}, 1000);
 
 
