@@ -36,6 +36,10 @@ var id = setInterval(function(){
 /////////////////////////////////////////////////////////
 /////////////////////////表示系///////////////////////////
 function displayGraph(){
+    var tx = document.getElementById("tx");
+    tx.innerHTML = "x: " + gX + "<br>"
+                    + "y: " + gY + "<br>"
+                    + "z: " + gZ;
     ctx = document.getElementById("canvas").getContext("2d");
     window.myBar = new Chart(ctx, {
         type: 'line', 
