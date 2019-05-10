@@ -52,19 +52,19 @@ var barChartData = {
     labels: labels,
     datasets: [
     {
-        label: 'y1',
+        label: 'X方向',
         fill: false,
-        data: aX,
+        data: gX,
         borderColor : "rgba(254,97,132,0.8)"
     },
     {
-        label: 'y2',
+        label: 'Y方向',
         fill: false,
         data: gY,
         borderColor : "rgba(54,164,235,0.8)"
     },
     {
-        label: 'y3',
+        label: 'Z方向',
         fill: false,
         data: gZ,
         borderColor : "rgba(255,255,0,0.8)"
