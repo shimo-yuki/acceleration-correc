@@ -23,7 +23,6 @@ var timer = window.setInterval(() =>{
 var count = 0;
 var id = setInterval(function(){
     count++;
-    console.log(count);
     gX.push(aX);
     gY.push(aY);
     gZ.push(aZ);
@@ -43,7 +42,23 @@ function displayGraph(){
     ctx = document.getElementById("canvas").getContext("2d");
     window.myBar = new Chart(ctx, {
         type: 'line', 
-        data: barChartData
+        data: barChartData,
+        options: {
+            responsive: false,
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [                          
+                    {
+                        ticks: {                       
+                            min: -10,                      
+                            max: 10                 
+                        }
+                    }
+                ]
+            }
+        }
     });
 };
 var xAxis = 5;
