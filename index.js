@@ -60,17 +60,23 @@ var id = setInterval(function(){
         fill: false,
         // data: barChartData,
         data: {
-            datasets: [{
-                data: []            
-            }, {
-
-                data: []
-          
-              }, {
-
-                data: []
-          
-              }]
+            datasets: [
+                {
+                    label: 'X方向',
+                    fill: false,
+                    borderColor : "rgba(254,97,132,0.8)"
+                },
+                {
+                    label: 'Y方向',
+                    fill: false,
+                    borderColor : "rgba(54,164,235,0.8)"
+                },
+                {
+                    label: 'Z方向',
+                    fill: false,
+                    borderColor : "rgba(255,255,0,0.8)"
+                },
+            ],
         },
         options: {
             scales: {
