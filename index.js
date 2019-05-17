@@ -1,94 +1,97 @@
 ////////ß////////////加速度について//////////////////////////
-
-var aX = 0, aY = 0, aZ = 0;
-
+var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
+ 
+// 加速度センサの値が変化したら実行される devicemotion イベント
 window.addEventListener("devicemotion", (dat) => {
-    aX = dat.accelerationIncludingGravity.x;
-    aY = dat.accelerationIncludingGravity.y;
-    aZ = dat.accelerationIncludingGravity.z;
+    aX = dat.accelerationIncludingGravity.x;    // x軸の重力加速度（Android と iOSでは正負が逆）
+    aY = dat.accelerationIncludingGravity.y;    // y軸の重力加速度（Android と iOSでは正負が逆）
+    aZ = dat.accelerationIncludingGravity.z;    // z軸の重力加速度（Android と iOSでは正負が逆）
 });
-
-function displayData(){
-    var txt = document.getElementById("txt");
-    txt.innerHTML = "x: " + aX + "<br>"
-                    + "y: " + aY + "<br>"
-                    + "z: " + aZ;
+ 
+// 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
+var timer = window.setInterval(() => {
+    displayData();      // displayData 関数を実行
+}, 100); // 33msごとに（1秒間に約30回）
+ 
+// データを表示する displayData 関数
+function displayData() {
+    var txt = document.getElementById("txt");   // データを表示するdiv要素の取得
+    txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
+                  + "y: " + aY + "<br>"         // y軸の値
+                  + "z: " + aZ;                 // z軸の値
 }
 
-
-    ctx = document.getElementById("canvas").getContext("2d");
-    displayData();
-    window.myBar = new Chart(ctx, {
-        type: 'line', 
-        fill: false,
-        // data: barChartData,
-        data: {
-            datasets: [
-                {
-                    label: 'X方向',
-                    fill: false,
-                    borderColor : "rgba(254,97,132,0.8)"
-                },
-                {
-                    label: 'Y方向',
-                    fill: false,
-                    borderColor : "rgba(54,164,235,0.8)"
-                },
-                {
-                    label: 'Z方向',
-                    fill: false,
-                    borderColor : "rgba(255,255,0,0.8)"
-                },
-            ],
-        },
-        options: {
-            scales: {
-                yAxes: [                          
-                    {
-                        ticks: {                       
-                            min: -10,                      
-                            max: 10                 
-                        }
-                    }
-                ],
-                xAxes: [                          
-                    {
-                        type: 'realtime'
-                    }
-                ]
+ctx = document.getElementById("canvas").getContext("2d");
+window.myBar = new Chart(ctx, {
+    type: 'line', 
+    fill: false,
+    data: {
+        datasets: [
+            {
+                label: 'X方向',
+                fill: false,
+                borderColor : "rgba(254,97,132,0.8)"
             },
-            plugins: {
-                streaming: {            
-                    duration: 20000,    
-                    refresh: 1000,      
-                    delay: 1000,        
-                    frameRate: 30,      
-                    pause: false,       
-    
-    
-                    onRefresh: function(chart) {
-                        chart.data.datasets[0].data.push({
-                            //グラフにデータを追加
-                            x: Date.now(),
-                            y: get_data1()
-                        }),
-                        chart.data.datasets[1].data.push({
-                            //グラフにデータを追加
-                            x: Date.now(),
-                            y: get_data2()
-                        }),
-                        chart.data.datasets[2].data.push({
-                            //グラフにデータを追加
-                            x: Date.now(),
-                            y: get_data3()
-                        });
+            {
+                label: 'Y方向',
+                fill: false,
+                borderColor : "rgba(54,164,235,0.8)"
+            },
+            {
+                label: 'Z方向',
+                fill: false,
+                borderColor : "rgba(255,255,0,0.8)"
+            },
+        ],
+    },
+    options: {
+        scales: {
+            yAxes: [                          
+                {
+                    ticks: {                       
+                        min: -10,                      
+                        max: 10                 
                     }
+                }
+            ],
+            xAxes: [                          
+                {
+                    type: 'realtime'
+                }
+            ]
+        },
+        plugins: {
+            streaming: {            
+                duration: 20000,    
+                refresh: 1000,      
+                delay: 1000,        
+                frameRate: 30,      
+                pause: false,       
+
+
+                onRefresh: function(chart) {
+                    chart.data.datasets[0].data.push({
+                        //グラフにデータを追加
+                        x: Date.now(),
+                        y: get_data1()
+                    }),
+                    chart.data.datasets[1].data.push({
+                        //グラフにデータを追加
+                        x: Date.now(),
+                        y: get_data2()
+                    }),
+                    chart.data.datasets[2].data.push({
+                        //グラフにデータを追加
+                        x: Date.now(),
+                        y: get_data3()
+                    });
                 }
             }
         }
-    });
+    }
+});
 
-
+var count = 0;
 function get_data1() {
     return aX;
 }
@@ -98,3 +101,4 @@ function get_data2() {
 function get_data3() {
     return aZ;
 }
+/////////////////////////////////////////////////////////
