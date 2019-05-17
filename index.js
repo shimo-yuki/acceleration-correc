@@ -3,6 +3,22 @@ var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる�
  
 // 加速度センサの値が変化したら実行される devicemotion イベント
 window.addEventListener("devicemotion", (dat) => {
+    var ua = [
+		"iPod",
+		"iPad",
+		"iPhone",
+		"Android"
+    ]
+    console.log("22s")
+	
+	for (var i = 0; i < ua.length; i++) {
+		if (navigator.userAgent.indexOf(ua[i]) > 0) {
+            aX = -dat.accelerationIncludingGravity.x;    // x軸の重力加速度（Android と iOSでは正負が逆）
+            aY = -dat.accelerationIncludingGravity.y;    // y軸の重力加速度（Android と iOSでは正負が逆）
+            aZ = -dat.accelerationIncludingGravity.z;    // z軸の重力加速度（Android と iOSでは正負が逆）
+            break;
+		}
+	}
     aX = dat.accelerationIncludingGravity.x;    // x軸の重力加速度（Android と iOSでは正負が逆）
     aY = dat.accelerationIncludingGravity.y;    // y軸の重力加速度（Android と iOSでは正負が逆）
     aZ = dat.accelerationIncludingGravity.z;    // z軸の重力加速度（Android と iOSでは正負が逆）
@@ -19,6 +35,25 @@ function displayData() {
     txt.innerHTML = "x: " + aX + "<br>"         // x軸の値
                   + "y: " + aY + "<br>"         // y軸の値
                   + "z: " + aZ;                 // z軸の値
+}
+
+document.getElementById("result").innerHTML = getUserType()
+
+function getUserType() {
+	var ua = [
+		"iPod",
+		"iPad",
+		"iPhone",
+		"Android"
+    ]
+
+	
+	for (var i = 0; i < ua.length; i++) {
+		if (navigator.userAgent.indexOf(ua[i]) > 0) {
+			return ua[i]
+		}
+	}
+	return "Other"
 }
 
 ctx = document.getElementById("canvasX").getContext("2d");
