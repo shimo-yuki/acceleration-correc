@@ -62,7 +62,15 @@ var id = setInterval(function(){
         data: {
             datasets: [{
                 data: []            
-            }]
+            }, {
+
+                data: []
+          
+              }, {
+
+                data: []
+          
+              }]
         },
         options: {
             scales: {
@@ -102,7 +110,7 @@ var id = setInterval(function(){
 // };
 var count = 0;
 function get_data() {
-    return aX;
+    return aX, aY, aZ;
 }
 var barChartData = {
     labels: labels,
