@@ -19,10 +19,6 @@ function displayData(){
                     + "z: " + aZ;
 }
 
-var timer = window.setInterval(() =>{
-    displayData();
-}, 10);
-
 
 
 /////////////////////////////////////////////////////////
@@ -104,11 +100,20 @@ var id = setInterval(function(){
     
     
                     onRefresh: function(chart) {
-                        chart.data.datasets.forEach(function(dataset) {
-                            dataset.data.push({
-                                x: Date.now(),
-                                y: get_data()
-                            });
+                        chart.data.datasets[0].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data1()
+                        }),
+                        chart.data.datasets[1].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data2()
+                        }),
+                        chart.data.datasets[2].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data3()
                         });
                     }
                 }
@@ -117,8 +122,14 @@ var id = setInterval(function(){
     });
 // };
 var count = 0;
-function get_data() {
-    return aX, aY, aZ;
+function get_data1() {
+    return aX;
+}
+function get_data2() {
+    return aY;
+}
+function get_data3() {
+    return aZ;
 }
 var barChartData = {
     labels: labels,
@@ -126,19 +137,19 @@ var barChartData = {
     {
         label: 'X方向',
         fill: false,
-        data: gX,
+        data: aX,
         borderColor : "rgba(254,97,132,0.8)"
     },
     {
         label: 'Y方向',
         fill: false,
-        data: gY,
+        data: aY,
         borderColor : "rgba(54,164,235,0.8)"
     },
     {
         label: 'Z方向',
         fill: false,
-        data: gZ,
+        data: aZ,
         borderColor : "rgba(255,255,0,0.8)"
     },
     ],
