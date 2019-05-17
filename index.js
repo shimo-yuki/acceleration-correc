@@ -11,7 +11,7 @@ window.addEventListener("devicemotion", (dat) => {
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
 var timer = window.setInterval(() => {
     displayData();      // displayData 関数を実行
-}, 100); // 33msごとに（1秒間に約30回）
+}, 100); // 33msごとに（1秒間に約100回）
  
 // データを表示する displayData 関数
 function displayData() {
@@ -21,7 +21,7 @@ function displayData() {
                   + "z: " + aZ;                 // z軸の値
 }
 
-ctx = document.getElementById("canvas").getContext("2d");
+ctx = document.getElementById("canvasX").getContext("2d");
 window.myBar = new Chart(ctx, {
     type: 'line', 
     fill: false,
@@ -31,12 +31,98 @@ window.myBar = new Chart(ctx, {
                 label: 'X方向',
                 fill: false,
                 borderColor : "rgba(254,97,132,0.8)"
-            },
+            }
+        ],
+    },
+    options: {
+        scales: {
+            yAxes: [                          
+                {
+                    ticks: {                       
+                        min: -10,                      
+                        max: 10                 
+                    }
+                }
+            ],
+            xAxes: [                          
+                {
+                    type: 'realtime'
+                }
+            ]
+        },
+        plugins: {
+            streaming: {            
+                duration: 20000,    
+                refresh: 1000,      
+                delay: 1000,        
+                frameRate: 30,      
+                pause: false,       
+
+
+                onRefresh: function(chart) {
+                    chart.data.datasets[0].data.push({
+                        //グラフにデータを追加
+                        x: Date.now(),
+                        y: get_data1()
+                    })
+                }
+            }
+        }
+    }
+});
+cty = document.getElementById("canvasY").getContext("2d");
+window.myBar = new Chart(cty, {
+    type: 'line', 
+    fill: false,
+    data: {
+        datasets: [
             {
                 label: 'Y方向',
                 fill: false,
                 borderColor : "rgba(54,164,235,0.8)"
-            },
+            }
+        ],
+    },
+    options: {
+        scales: {
+            yAxes: [                          
+                {
+                    ticks: {                       
+                        min: -10,                      
+                        max: 10                 
+                    }
+                }
+            ],
+            xAxes: [                          
+                {
+                    type: 'realtime'
+                }
+            ]
+        },
+        plugins: {
+            streaming: {            
+                duration: 20000,    
+                refresh: 1000,      
+                delay: 1000,        
+                frameRate: 30,      
+                pause: false,       
+                onRefresh: function(chart) {
+                    chart.data.datasets[0].data.push({
+                        //グラフにデータを追加
+                        x: Date.now(),
+                        y: get_data2()
+                    })
+                }
+            }
+        }
+    }
+});
+ctz = document.getElementById("canvasZ").getContext("2d");
+window.myBar = new Chart(ctz, {
+    type: 'line', 
+    fill: false,
+    data: {
+        datasets: [
             {
                 label: 'Z方向',
                 fill: false,
@@ -73,16 +159,6 @@ window.myBar = new Chart(ctx, {
                     chart.data.datasets[0].data.push({
                         //グラフにデータを追加
                         x: Date.now(),
-                        y: get_data1()
-                    }),
-                    chart.data.datasets[1].data.push({
-                        //グラフにデータを追加
-                        x: Date.now(),
-                        y: get_data2()
-                    }),
-                    chart.data.datasets[2].data.push({
-                        //グラフにデータを追加
-                        x: Date.now(),
                         y: get_data3()
                     });
                 }
@@ -90,6 +166,7 @@ window.myBar = new Chart(ctx, {
         }
     }
 });
+
 
 var count = 0;
 function get_data1() {
