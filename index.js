@@ -89,7 +89,7 @@ window.myBar = new Chart(ctx, {
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
-                    refresh: 100,    
+                    refresh: 200,    
                     delay: 1000,   
                     pause: false, 
 
@@ -137,7 +137,7 @@ window.myBar = new Chart(cty, {
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
-                    refresh: 100,    
+                    refresh: 200,    
                     delay: 1000,   
                     pause: false, 
 
@@ -185,7 +185,7 @@ window.myBar = new Chart(ctz, {
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
-                    refresh: 100,    
+                    refresh: 200,    
                     delay: 1000, 
                     pause: false, 
 
