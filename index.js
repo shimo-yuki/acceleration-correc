@@ -191,7 +191,7 @@ window.myBar = new Chart(ctz, {
             streaming: {            
                 duration: 20000,    
                 refresh: 100,      
-                delay: 1000,        
+                delay: 1000,            
                 frameRate: 45,      
                 pause: false,       
 
