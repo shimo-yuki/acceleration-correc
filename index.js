@@ -89,7 +89,7 @@ window.myBar = new Chart(ctx, {
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
-                    refresh: 500,    
+                    refresh: 3000,    
                     delay: 1000,   
                     pause: false, 
 
