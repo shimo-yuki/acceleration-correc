@@ -1,7 +1,14 @@
 ////////ß////////////加速度について//////////////////////////
 var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
- 
+var real = [];
+// var fft = require('fft-js').fft,
+// signal = [1,0,1,0];
+
+// var phasors = fft(signal);
+
+// console.log(phasors);
 // 加速度センサの値が変化したら実行される devicemotion イベント
+
 window.addEventListener("devicemotion", (dat) => {
     var ua = [
 		"iPod",
@@ -9,7 +16,6 @@ window.addEventListener("devicemotion", (dat) => {
 		"iPhone",
 		"Android"
     ]
-    console.log("22s")
 	
 	for (var i = 0; i < ua.length; i++) {
 		if (navigator.userAgent.indexOf(ua[i]) > 0) {
@@ -186,7 +192,7 @@ window.myBar = new Chart(ctz, {
                 duration: 20000,    
                 refresh: 100,      
                 delay: 1000,        
-                frameRate: 45,      
+                frameRate: 40,      
                 pause: false,       
 
 
@@ -195,7 +201,13 @@ window.myBar = new Chart(ctz, {
                         //グラフにデータを追加
                         x: Date.now(),
                         y: get_data3()
-                    });
+                    })
+                    // real.push(get_data3());
+                    // var imaginary = new Array(real.length);
+                    // imaginary.fill(0);
+                    // var fft = new FFT();
+                    // fft.calc(1, real, imaginary);
+                    // console.log(fft);
                 }
             }
         }
