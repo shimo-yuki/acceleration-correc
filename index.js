@@ -143,7 +143,7 @@ window.myBar = new Chart(cty, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 200,      
+                refresh: 100,      
                 delay: 1000,        
                 frameRate: 60,      
                 pause: false,       
