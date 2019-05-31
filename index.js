@@ -88,8 +88,8 @@ window.myBar = new Chart(ctx, {
             xAxes: [{                          
                 type: 'realtime',  
                 realtime: {         
-                    duration: 20000,    
-                    refresh: 300,    
+                    duration: 4000,      
+                    refresh: 500,    
                     delay: 1000,   
                     pause: false, 
 
@@ -136,7 +136,7 @@ window.myBar = new Chart(cty, {
             xAxes: [{                          
                 type: 'realtime',  
                 realtime: {         
-                    duration: 20000,    
+                    duration: 4000,     
                     refresh: 300,    
                     delay: 1000,   
                     pause: false, 
