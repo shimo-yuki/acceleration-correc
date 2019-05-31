@@ -85,28 +85,27 @@ window.myBar = new Chart(ctx, {
                     }
                 }
             ],
-            xAxes: [                          
-                {
-                    type: 'realtime'
+            xAxes: [{                          
+                type: 'realtime',  
+                realtime: {         
+                    duration: 20000,    
+                    refresh: 300,    
+                    delay: 1000,   
+                    pause: false, 
+
+                    onRefresh: function(chart) {
+                        chart.data.datasets[0].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data1()
+                        })
+                    }
                 }
-            ]
+            }]
         },
         plugins: {
-            streaming: {            
-                duration: 20000,    
-                refresh: 200,      
-                delay: 1000,         
-                frameRate: 30,      
-                pause: false,       
-
-
-                onRefresh: function(chart) {
-                    chart.data.datasets[0].data.push({
-                        //グラフにデータを追加
-                        x: Date.now(),
-                        y: get_data1()
-                    })
-                }
+            streaming: {      
+                frameRate: 30
             }
         }
     }
@@ -134,26 +133,27 @@ window.myBar = new Chart(cty, {
                     }
                 }
             ],
-            xAxes: [                          
-                {
-                    type: 'realtime'
+            xAxes: [{                          
+                type: 'realtime',  
+                realtime: {         
+                    duration: 20000,    
+                    refresh: 300,    
+                    delay: 1000,   
+                    pause: false, 
+
+                    onRefresh: function(chart) {
+                        chart.data.datasets[0].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data2()
+                        })
+                    }
                 }
-            ]
+            }]
         },
         plugins: {
-            streaming: {            
-                duration: 20000,    
-                refresh: 200,      
-                delay: 1000,         
-                frameRate: 30,     
-                pause: false,       
-                onRefresh: function(chart) {
-                    chart.data.datasets[0].data.push({
-                        //グラフにデータを追加
-                        x: Date.now(),
-                        y: get_data2()
-                    })
-                }
+            streaming: {      
+                frameRate: 30
             }
         }
     }
@@ -181,34 +181,27 @@ window.myBar = new Chart(ctz, {
                     }
                 }
             ],
-            xAxes: [                          
-                {
-                    type: 'realtime'
+            xAxes: [{                          
+                type: 'realtime',  
+                realtime: {         
+                    duration: 20000,    
+                    refresh: 300,    
+                    delay: 1000,   
+                    pause: false, 
+
+                    onRefresh: function(chart) {
+                        chart.data.datasets[0].data.push({
+                            //グラフにデータを追加
+                            x: Date.now(),
+                            y: get_data3()
+                        })
+                    }
                 }
-            ]
+            }]
         },
         plugins: {
-            streaming: {            
-                duration: 20000,    
-                refresh: 200,      
-                delay: 1000,         
-                frameRate: 30,      
-                pause: false,       
-
-
-                onRefresh: function(chart) {
-                    chart.data.datasets[0].data.push({
-                        //グラフにデータを追加
-                        x: Date.now(),
-                        y: get_data3()
-                    })
-                    // real.push(get_data3());
-                    // var imaginary = new Array(real.length);
-                    // imaginary.fill(0);
-                    // var fft = new FFT();
-                    // fft.calc(1, real, imaginary);
-                    // console.log(fft);
-                }
+            streaming: {      
+                frameRate: 30
             }
         }
     }
