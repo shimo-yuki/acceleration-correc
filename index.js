@@ -96,7 +96,7 @@ window.myBar = new Chart(ctx, {
                 duration: 20000,    
                 refresh: 200,      
                 delay: 1000,        
-                frameRate: 30,      
+                frameRate: 60,      
                 pause: false,       
 
 
@@ -145,7 +145,7 @@ window.myBar = new Chart(cty, {
                 duration: 20000,    
                 refresh: 200,      
                 delay: 1000,        
-                frameRate: 30,      
+                frameRate: 60,      
                 pause: false,       
                 onRefresh: function(chart) {
                     chart.data.datasets[0].data.push({
@@ -192,7 +192,7 @@ window.myBar = new Chart(ctz, {
                 duration: 20000,    
                 refresh: 200,      
                 delay: 1000,        
-                frameRate: 30,      
+                frameRate: 60,      
                 pause: false,       
 
 
