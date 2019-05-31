@@ -94,7 +94,7 @@ window.myBar = new Chart(ctx, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 1000,      
+                refresh: 200,      
                 delay: 1000,        
                 frameRate: 30,      
                 pause: false,       
@@ -143,7 +143,7 @@ window.myBar = new Chart(cty, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 1000,      
+                refresh: 200,      
                 delay: 1000,        
                 frameRate: 30,      
                 pause: false,       
@@ -190,7 +190,7 @@ window.myBar = new Chart(ctz, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 1000,      
+                refresh: 200,      
                 delay: 1000,        
                 frameRate: 30,      
                 pause: false,       
