@@ -177,7 +177,7 @@ window.myBar = new Chart(ctz, {
                 {
                     ticks: {                       
                         min: -10,                      
-                        max: 10                 
+                        max: 15                 
                     }
                 }
             ],
