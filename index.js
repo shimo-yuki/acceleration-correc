@@ -94,9 +94,9 @@ window.myBar = new Chart(ctx, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 200,      
+                refresh: 1000,      
                 delay: 1000,        
-                frameRate: 60,      
+                frameRate: 30,      
                 pause: false,       
 
 
@@ -143,9 +143,9 @@ window.myBar = new Chart(cty, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 100,      
+                refresh: 1000,      
                 delay: 1000,        
-                frameRate: 60,      
+                frameRate: 30,      
                 pause: false,       
                 onRefresh: function(chart) {
                     chart.data.datasets[0].data.push({
@@ -177,7 +177,7 @@ window.myBar = new Chart(ctz, {
                 {
                     ticks: {                       
                         min: -10,                      
-                        max: 15                 
+                        max: 10                 
                     }
                 }
             ],
@@ -190,9 +190,9 @@ window.myBar = new Chart(ctz, {
         plugins: {
             streaming: {            
                 duration: 20000,    
-                refresh: 200,      
+                refresh: 100,      
                 delay: 1000,        
-                frameRate: 60,      
+                frameRate: 45,      
                 pause: false,       
 
 
