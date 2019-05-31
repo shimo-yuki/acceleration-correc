@@ -184,7 +184,7 @@ window.myBar = new Chart(ctz, {
             xAxes: [{                          
                 type: 'realtime',  
                 realtime: {         
-                    duration: 200,    
+                    duration: 1000,    
                     refresh: 300,    
                     delay: 1000,   
                     pause: false, 
