@@ -1,7 +1,9 @@
 ////////ß////////////加速度について//////////////////////////
 var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
-var real = [], imaginary = [];
-var fft = new FFT();
+var realX = [],realY = [], realZ, imaginaryX = [], imaginaryY = [], imaginaryZ = [];
+var fftX = new FFT();
+var fftY = new FFT();
+var fftZ = new FFT();
     
     
 window.addEventListener("devicemotion", (dat) => {
@@ -94,6 +96,10 @@ myBar = new Chart(ctx, {
                             x: Date.now(),
                             y: get_data1()
                         })
+                        realX.push(get_data1());
+                        imaginaryX = new Array(realX.length);
+                        imaginaryX.fill(0);
+                        originalX = realX.slice(0);   
                     }
                 }
             }]
@@ -142,6 +148,10 @@ myBar = new Chart(cty, {
                             x: Date.now(),
                             y: get_data2()
                         })
+                        realY.push(get_data2());
+                        imaginaryY = new Array(realY.length);
+                        imaginaryY.fill(0);
+                        originalY = realY.slice(0);   
                     }
                 }
             }]
@@ -190,10 +200,10 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        real.push(get_data3());
-                        imaginary = new Array(real.length);
-                        imaginary.fill(0);
-                        original = real.slice(0);   
+                        realZ.push(get_data3());
+                        imaginaryZ = new Array(realZ.length);
+                        imaginaryZ.fill(0);
+                        originalZ = realZ.slice(0);   
                     }
                 }
             }]
@@ -224,45 +234,36 @@ function out(array){
 }
 document.getElementById("finishbtn").onclick = function(){
         
-        fft.calc( 1, real, imaginary ) ;
-
-        var amplitude = fft.amplitude(real,imaginary);
-
-        var power = fft.power(real, imaginary);
-
-        var phase = fft.phase(real, imaginary);
-
-        var frequencies = fft.frequencies(real, imaginary, 1);
-
-        var periods = fft.periods(real, imaginary, 1);
 
         var data1=[{
-                name:'original source',
-                y:original
-            }];
+            name:'real array',
+            y:realX
+        },
+        {   
+            name:'imaginary array',
+            y:imaginaryX
+        }];
 
         var data2=[{
                 name:'real array',
-                y:real
+                y:realY
             },
             {   
                 name:'imaginary array',
-                y:imaginary
+                y:imaginaryY
             }];
 
         var data3=[{
-                name:'amplitude array',
-                x:frequencies,
-                y:amplitude
-            },
-            {   
-                name:'phase array',
-                x:frequencies,
-                y:phase
-            }];
+            name:'real array',
+            y:realZ
+        },
+        {   
+            name:'imaginary array',
+            y:imaginaryZ
+        }];
 
         Plotly.plot('stage1', data1, {
-                                    title: 'original source',
+                                    title: 'FFT',
                                     xaxis: {title: 'index'}
                                  });
         Plotly.plot('stage2', data2, {
@@ -270,8 +271,8 @@ document.getElementById("finishbtn").onclick = function(){
                                     xaxis: {title: 'index'}
                                  });
         Plotly.plot('stage3', data3, {
-                                    title: 'amplitude, phase vs frequency',
-                                    xaxis: {title: 'frequencies'}
+                                    title: 'FFT',
+                                    xaxis: {title: 'index'}
                                  });
 
         fft.calc( -1, real, imaginary);
