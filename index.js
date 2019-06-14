@@ -235,4 +235,7 @@ function fftGrapth(){
         name:'imaginary array',
         y:imaginary
     }]
+    var txt = document.getElementById("console");  
+    txt.innerHTML = "real: " + real + "<br>"       
+                  + "imaginary: " + imaginary ;
 }
