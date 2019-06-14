@@ -1,6 +1,6 @@
 ////////ß////////////加速度について//////////////////////////
 var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
-var realX = [],realY = [], realZ, imaginaryX = [], imaginaryY = [], imaginaryZ = [];
+var realX = [],realY = [], realZ = [], imaginaryX = [], imaginaryY = [], imaginaryZ = [];
 var fftX = new FFT();
 var fftY = new FFT();
 var fftZ = new FFT();
