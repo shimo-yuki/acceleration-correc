@@ -223,33 +223,18 @@ function out(array){
     console.log( JSON.stringify(array));
 }
 document.getElementById("finishbtn").onclick = function(){
-    out('Original source (real array)');
-        out(original);
         
         fft.calc( 1, real, imaginary ) ;
-        out('FFT');
-        out(real);
-        out(imaginary);
 
         var amplitude = fft.amplitude(real,imaginary);
-        out("amplitude");
-        out(amplitude);
 
         var power = fft.power(real, imaginary);
-        out("power");
-        out(power);
 
         var phase = fft.phase(real, imaginary);
-        out("phase");
-        out(phase);
 
         var frequencies = fft.frequencies(real, imaginary, 1);
-        out("frequencies");
-        out(frequencies);
 
         var periods = fft.periods(real, imaginary, 1);
-        out("periods");
-        out(periods);
 
         var data1=[{
                 name:'original source',
@@ -289,10 +274,7 @@ document.getElementById("finishbtn").onclick = function(){
                                     xaxis: {title: 'frequencies'}
                                  });
 
-        out('iFFT');
         fft.calc( -1, real, imaginary);
-        out(real);
-        out(imaginary);
     
         console.timeEnd('fft');
     var txt = document.getElementById("console");  
