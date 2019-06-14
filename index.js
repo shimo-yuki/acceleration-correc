@@ -1,14 +1,9 @@
 ////////ß////////////加速度について//////////////////////////
 var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
-var real = [];
-// var fft = require('fft-js').fft,
-// signal = [1,0,1,0];
-
-// var phasors = fft(signal);
-
-// console.log(phasors);
-// 加速度センサの値が変化したら実行される devicemotion イベント
-
+var real = [], imaginary = [];
+var fft = new FFT();
+    
+    
 window.addEventListener("devicemotion", (dat) => {
     var ua = [
 		"iPod",
@@ -63,7 +58,7 @@ function getUserType() {
 }
 
 ctx = document.getElementById("canvasX").getContext("2d");
-window.myBar = new Chart(ctx, {
+myBar = new Chart(ctx, {
     type: 'line', 
     fill: false,
     data: {
@@ -111,7 +106,7 @@ window.myBar = new Chart(ctx, {
     }
 });
 cty = document.getElementById("canvasY").getContext("2d");
-window.myBar = new Chart(cty, {
+myBar = new Chart(cty, {
     type: 'line', 
     fill: false,
     data: {
@@ -159,7 +154,7 @@ window.myBar = new Chart(cty, {
     }
 });
 ctz = document.getElementById("canvasZ").getContext("2d");
-window.myBar = new Chart(ctz, {
+myBar = new Chart(ctz, {
     type: 'line', 
     fill: false,
     data: {
@@ -195,6 +190,10 @@ window.myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
+                        real.push(get_data3());
+                        imaginary = new Array(real.length);
+                        imaginary.fill(0);
+                        original = real.slice(0);   
                     }
                 }
             }]
@@ -219,3 +218,21 @@ function get_data3() {
     return aZ;
 }
 /////////////////////////////////////////////////////////
+
+function fftGrapth(){
+
+    fft.calc( 1, real, imaginary ) ;
+    fft.calc( -1, real, imaginary);
+    Plotly.plot('stage2', data2, {
+        title: 'FFT',
+        xaxis: {title: 'index'}
+    });
+    var data2=[{
+        name:'real array',
+        y:real
+    },
+    {   
+        name:'imaginary array',
+        y:imaginary
+    }]
+}

@@ -3,24 +3,33 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <title>加速度の正確さ診断</title>
     </head>
 
     <body>
-        <input type="button" id="startbtn" value="スタート">
-        <input type="button" id="finishbtn" value="終了">
+        <input type="button" id="startbtn" value="スタート" onclick="myBar();">
+        <input type="button" id="finishbtn" value="終了" onclick="fftGrapth();">
         <div id="txt">ここにデータを表示</div>
         <div class="container" style="width:110%">
             <canvas id="canvasX"></canvas>
             <canvas id="canvasY"></canvas>
             <canvas id="canvasZ"></canvas>
         </div>
+        <div id="stage1" ></div>
+        <div id="stage2" ></div>
+        <div id="stage3" ></div>
+        <div id = "console"> </div>
         <div id="result"></div>
         <script type="text/javascript" src="moment.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
         <script src="jquery.fft.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
         <script type="text/javascript" src="chartjs-plugin-streaming.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="jquery.fft.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script type="text/javascript"></script>
         <script src="index.js"></script>
     </body>
 </html>
