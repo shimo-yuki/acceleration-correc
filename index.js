@@ -223,6 +223,79 @@ function out(array){
     console.log( JSON.stringify(array));
 }
 document.getElementById("finishbtn").onclick = function(){
+    out('Original source (real array)');
+        out(original);
+        
+        fft.calc( 1, real, imaginary ) ;
+        out('FFT');
+        out(real);
+        out(imaginary);
+
+        var amplitude = fft.amplitude(real,imaginary);
+        out("amplitude");
+        out(amplitude);
+
+        var power = fft.power(real, imaginary);
+        out("power");
+        out(power);
+
+        var phase = fft.phase(real, imaginary);
+        out("phase");
+        out(phase);
+
+        var frequencies = fft.frequencies(real, imaginary, 1);
+        out("frequencies");
+        out(frequencies);
+
+        var periods = fft.periods(real, imaginary, 1);
+        out("periods");
+        out(periods);
+
+        var data1=[{
+                name:'original source',
+                y:original
+            }];
+
+        var data2=[{
+                name:'real array',
+                y:real
+            },
+            {   
+                name:'imaginary array',
+                y:imaginary
+            }];
+
+        var data3=[{
+                name:'amplitude array',
+                x:frequencies,
+                y:amplitude
+            },
+            {   
+                name:'phase array',
+                x:frequencies,
+                y:phase
+            }];
+
+        Plotly.plot('stage1', data1, {
+                                    title: 'original source',
+                                    xaxis: {title: 'index'}
+                                 });
+        Plotly.plot('stage2', data2, {
+                                    title: 'FFT',
+                                    xaxis: {title: 'index'}
+                                 });
+        Plotly.plot('stage3', data3, {
+                                    title: 'amplitude, phase vs frequency',
+                                    xaxis: {title: 'frequencies'}
+                                 });
+
+        out('iFFT');
+        fft.calc( -1, real, imaginary);
+        out(real);
+        out(imaginary);
+    
+        console.timeEnd('fft');
     var txt = document.getElementById("console");  
-    txt.innerHTML = "real" 
+    txt.innerHTML = "real: " + real + "<br>"       
+                  + "imaginary: " + imaginary ;
 }
