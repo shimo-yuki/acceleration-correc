@@ -222,9 +222,7 @@ function out(array){
     $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
     console.log( JSON.stringify(array));
 }
-
-function fftGrapth(){
-
+document.getElementById("finishbtn").onclick = function(){
     out('Original source (real array)');
         out(original);
         
