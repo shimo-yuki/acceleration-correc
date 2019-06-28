@@ -1,19 +1,9 @@
 ////////ß////////////加速度について//////////////////////////
 var aX = 0, aY = 0, aZ = 0;                     // 加速度の値を入れる変数を3個用意
-var realX = [],realY = [], realZ = [], imaginaryX = [], imaginaryY = [], imaginaryZ = [];
+var realX = [], realY = [], realZ = [], imaginaryX = [], imaginaryY = [], imaginaryZ = [];
 var fftX = new FFT();
 var fftY = new FFT();
 var fftZ = new FFT();
-        real=[];
-        N = 16;
-        for (i = 0;  i<N; i++){
-            real.push(Math.sin((2 * 3.1415926535 * i) / N ));
-        }
-        var imaginary =new Array(real.length);
-        imaginary.fill(0);
-
-        original = real.slice(0);
-    
     
 window.addEventListener("devicemotion", (dat) => {
     var ua = [
@@ -242,33 +232,32 @@ function out(array){
     console.log( JSON.stringify(array));
 }
 document.getElementById("finishbtn").onclick = function(){
-        console.log(real)
-    var phase = fftX.phase(real, imaginary);
-    var frequencies = fftX.frequencies(real, imaginary, 1);
-    var amplitude = fftX.amplitude(real,imaginary);
     
-    var data1=[{
-        name:'amplitude array',
-        x:frequencies,
-        y:amplitude
-    },
-    {   
-        name:'phase array',
-        x:frequencies,
-        y:phase
-    }];
+        console.log(realZ)
+    var phase = fftZ.phase(realZ, imaginaryZ);
+    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
+    var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
+    var periods = fftZ.periods(realZ, imaginaryZ, 1);
 
+    ctbar = document.getElementById("result").getContext("2d");
+    myBar = new Chart(ctbar, {
+        type: "line",    // ★必須　グラフの種類
+        data: {
+            labels:  frequencies,  // Ｘ軸のラベル
+            datasets: [
+                {
+                    label: "FFT",                            // 系列名
+                    data: amplitude                   // ★必須　系列Ａのデータ
+                }
+            ]
+        }
+});
 
-        Plotly.plot('stage1', data1, {
-                                    title: 'FFT',
-                                    xaxis: {title: 'index'}
-                                 });
-
-        fftX.calc( -1, real, imaginary);
+        fftX.calc( -1, realZ, imaginaryZ);
     
         console.timeEnd('fft');
     var txt = document.getElementById("console");  
-    txt.innerHTML = "real: " + real + "<br>"       
-                  + "imaginary: " + imaginary ;
+    txt.innerHTML = "real: " + realZ + "<br>"       
+                  + "imaginary: " + imaginaryZ ;
 }
 
