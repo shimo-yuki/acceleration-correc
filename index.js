@@ -234,52 +234,32 @@ function out(array){
 }
 document.getElementById("finishbtn").onclick = function(){
         
+    var phaseX = fftX.phase(realX, imaginaryX);
+    var frequencies = fftX.frequencies(realX, imaginaryX, 1);
+    var amplitude = fftX.amplitude(realX,imaginaryX);
+    
+    var data1=[{
+        name:'amplitude array',
+        x:frequencies,
+        y:amplitude
+    },
+    {   
+        name:'phase array',
+        x:frequencies,
+        y:phaseX
+    }];
 
-        var data1=[{
-            name:'real array',
-            y:realX
-        },
-        {   
-            name:'imaginary array',
-            y:imaginaryX
-        }];
-
-        var data2=[{
-                name:'real array',
-                y:realY
-            },
-            {   
-                name:'imaginary array',
-                y:imaginaryY
-            }];
-
-        var data3=[{
-            name:'real array',
-            y:realZ
-        },
-        {   
-            name:'imaginary array',
-            y:imaginaryZ
-        }];
 
         Plotly.plot('stage1', data1, {
                                     title: 'FFT',
                                     xaxis: {title: 'index'}
                                  });
-        Plotly.plot('stage2', data2, {
-                                    title: 'FFT',
-                                    xaxis: {title: 'index'}
-                                 });
-        Plotly.plot('stage3', data3, {
-                                    title: 'FFT',
-                                    xaxis: {title: 'index'}
-                                 });
 
-        fft.calc( -1, real, imaginary);
+        fftX.calc( -1, realX, imaginaryX);
     
         console.timeEnd('fft');
     var txt = document.getElementById("console");  
-    txt.innerHTML = "real: " + real + "<br>"       
-                  + "imaginary: " + imaginary ;
+    txt.innerHTML = "real: " + realX + "<br>"       
+                  + "imaginary: " + imaginaryX ;
 }
 
