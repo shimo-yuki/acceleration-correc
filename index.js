@@ -4,6 +4,15 @@ var realX = [],realY = [], realZ = [], imaginaryX = [], imaginaryY = [], imagina
 var fftX = new FFT();
 var fftY = new FFT();
 var fftZ = new FFT();
+        real=[];
+        N = 16;
+        for (i = 0;  i<N; i++){
+            real.push(Math.sin((2 * 3.1415926535 * i) / N ));
+        }
+        var imaginary =new Array(real.length);
+        imaginary.fill(0);
+
+        original = real.slice(0);
     
     
 window.addEventListener("devicemotion", (dat) => {
@@ -233,10 +242,10 @@ function out(array){
     console.log( JSON.stringify(array));
 }
 document.getElementById("finishbtn").onclick = function(){
-        
-    var phaseX = fftX.phase(realX, imaginaryX);
-    var frequencies = fftX.frequencies(realX, imaginaryX, 1);
-    var amplitude = fftX.amplitude(realX,imaginaryX);
+        console.log(real)
+    var phase = fftX.phase(real, imaginary);
+    var frequencies = fftX.frequencies(real, imaginary, 1);
+    var amplitude = fftX.amplitude(real,imaginary);
     
     var data1=[{
         name:'amplitude array',
@@ -246,7 +255,7 @@ document.getElementById("finishbtn").onclick = function(){
     {   
         name:'phase array',
         x:frequencies,
-        y:phaseX
+        y:phase
     }];
 
 
@@ -255,11 +264,11 @@ document.getElementById("finishbtn").onclick = function(){
                                     xaxis: {title: 'index'}
                                  });
 
-        fftX.calc( -1, realX, imaginaryX);
+        fftX.calc( -1, real, imaginary);
     
         console.timeEnd('fft');
     var txt = document.getElementById("console");  
-    txt.innerHTML = "real: " + realX + "<br>"       
-                  + "imaginary: " + imaginaryX ;
+    txt.innerHTML = "real: " + real + "<br>"       
+                  + "imaginary: " + imaginary ;
 }
 
