@@ -65,13 +65,18 @@ myBar = new Chart(ctx, {
     data: {
         datasets: [
             {
-                label: 'X方向',
+                label: 'X軸方向成分の加速度',
                 fill: false,
                 borderColor : "rgba(254,97,132,0.8)"
             }
         ],
     },
     options: {
+        title: {                           //タイトル設定
+            display: true,                 //表示設定
+            fontSize: 18,                  //フォントサイズ
+            text: 'X軸方向成分の加速度'                //ラベル
+        },
         scales: {
             yAxes: [                          
                 {
@@ -81,7 +86,21 @@ myBar = new Chart(ctx, {
                     }
                 }
             ],
-            xAxes: [{                          
+            yAxes: [{                      //y軸設定
+                display: true,             //表示設定
+                scaleLabel: {              //軸ラベル設定
+                   display: true,          //表示設定
+                   labelString: '加速度(m/s^2)',  //ラベル
+                   fontSize: 18               //フォントサイズ
+                },
+            }],
+            xAxes: [{ 
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                       display: true,             //表示設定
+                       labelString: '秒(s)',  //ラベル
+                       fontSize: 18               //フォントサイズ
+                    },                         
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
@@ -117,13 +136,18 @@ myBar = new Chart(cty, {
     data: {
         datasets: [
             {
-                label: 'Y方向',
+                label: 'Y軸方向成分の加速度',
                 fill: false,
                 borderColor : "rgba(54,164,235,0.8)"
             }
         ],
     },
     options: {
+        title: {                           //タイトル設定
+            display: true,                 //表示設定
+            fontSize: 18,                  //フォントサイズ
+            text: 'Y軸方向成分の加速度'                //ラベル
+        },
         scales: {
             yAxes: [                          
                 {
@@ -133,7 +157,21 @@ myBar = new Chart(cty, {
                     }
                 }
             ],
-            xAxes: [{                          
+            yAxes: [{                      //y軸設定
+                display: true,             //表示設定
+                scaleLabel: {              //軸ラベル設定
+                   display: true,          //表示設定
+                   labelString: '加速度(m/s^2)',  //ラベル
+                   fontSize: 18               //フォントサイズ
+                },
+            }],
+            xAxes: [{ 
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                       display: true,             //表示設定
+                       labelString: '秒(s)',  //ラベル
+                       fontSize: 18               //フォントサイズ
+                    },                        
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
@@ -169,13 +207,18 @@ myBar = new Chart(ctz, {
     data: {
         datasets: [
             {
-                label: 'Z方向',
+                label: 'Z軸方向成分の加速度',
                 fill: false,
                 borderColor : "rgba(255,255,0,0.8)"
             },
         ],
     },
     options: {
+        title: {                           //タイトル設定
+            display: true,                 //表示設定
+            fontSize: 18,                  //フォントサイズ
+            text: 'Z軸方向成分の加速度'                //ラベル
+        },
         scales: {
             yAxes: [                          
                 {
@@ -185,7 +228,21 @@ myBar = new Chart(ctz, {
                     }
                 }
             ],
-            xAxes: [{                          
+            yAxes: [{                      //y軸設定
+                display: true,             //表示設定
+                scaleLabel: {              //軸ラベル設定
+                   display: true,          //表示設定
+                   labelString: '加速度(m/s^2)',  //ラベル
+                   fontSize: 18               //フォントサイズ
+                },
+            }],
+            xAxes: [{ 
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                       display: true,             //表示設定
+                       labelString: '秒(s)',  //ラベル
+                       fontSize: 18               //フォントサイズ
+                    },                          
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
@@ -229,7 +286,7 @@ function get_data3() {
 /////////////////////////////////////////////////////////
 function out(array){
     $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
-    console.log( JSON.stringify(array));
+
 }
 document.getElementById("finishbtn").onclick = function(){
     
@@ -238,7 +295,8 @@ document.getElementById("finishbtn").onclick = function(){
     var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
     var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
     var periods = fftZ.periods(realZ, imaginaryZ, 1);
-
+    console.log(frequencies)
+    console.log(amplitude)
     ctbar = document.getElementById("result").getContext("2d");
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
