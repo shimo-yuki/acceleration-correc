@@ -283,39 +283,42 @@ function get_data2() {
 function get_data3() {
     return aZ;
 }
+
+
 /////////////////////////////////////////////////////////
-function out(array){
-    $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
 
-}
+
 document.getElementById("finishbtn").onclick = function(){
+    console.log('aa')
     
-        console.log(realZ)
-    var phase = fftZ.phase(realZ, imaginaryZ);
-    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
-    var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
-    var periods = fftZ.periods(realZ, imaginaryZ, 1);
-    console.log(frequencies)
-    console.log(amplitude)
-    ctbar = document.getElementById("result").getContext("2d");
-    myBar = new Chart(ctbar, {
-        type: "line",    // ★必須　グラフの種類
-        data: {
-            labels:  frequencies,  // Ｘ軸のラベル
-            datasets: [
-                {
-                    label: "FFT",                            // 系列名
-                    data: amplitude                   // ★必須　系列Ａのデータ
-                }
-            ]
-        }
-});
+    let samplePost = function(){
 
-        fftX.calc( -1, realZ, imaginaryZ);
+        //レスポンス
+        var response = {};
     
-        console.timeEnd('fft');
-    var txt = document.getElementById("console");  
-    txt.innerHTML = "real: " + realZ + "<br>"       
-                  + "imaginary: " + imaginaryZ ;
-}
+        //リクエスト
+        let request = {para_1 : get,
+                       para_2 : "aaaa",
+                       para_3 : encodeURI("日本語送信")};
+    
+        //ajax
+        $.ajax({
+          type        : "POST",
+          url         : index.py,
+          data        : JSON.stringify(request),  //object -> json
+          async       : false,                    //true:非同期(デフォルト), false:同期
+          dataType    : "json",
+          success     : function(data) {
+            //data = JSON.parse(data);  //error
+            response = data;
+          },
+          error       : function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("リクエスト時になんらかのエラーが発生しました\n" + url + "\n" + textStatus +":\n" + errorThrown);
+          }
+        });
+    
+        //表示
+        console.log(response);
+    }
+};
 
