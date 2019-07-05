@@ -1,23 +1,74 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
-from flask import request, jsonify
+
+#######################################################
+#
+#  import
+#
+#######################################################
+
+import cgitb
+import cgi
+import os
 import json
+import sys
+import io
+import urllib.parse  #url encode/decode
 
-app = Flask(__name__)
+
+#######################################################
+#
+#  main
+#
+#######################################################
+def main():
+
+    #文字化け対策
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+    #エラーの内容をブラウザに送信
+    cgitb.enable()
+
+    #値取得
+    data   = sys.stdin.read()
+    params = json.loads(data)
+
+    #
+    para_1 = params["para_1"]
 
 
-@app.route('/')
-def index():
-   return render_template('index.html')
 
-@app.route('/postText', methods=['POST'])
-def lower_conversion():
-   text = request.json['text']
-   if "ping" in text:
-       return_data = {"result":"pong"}
-       return jsonify(ResultSet=json.dumps(return_data))
-   lower_text = text.lower()
-   return_data = {"result":lower_text}
-   return jsonify(ResultSet=json.dumps(return_data))
+
+    #######################################################
+    #
+    #  処理
+    #
+    #######################################################
+
+    #処理
+
+    #レスポンス
+    response = {"res" : "aaaa"}
+
+
+    #######################################################
+    #
+    #  response
+    #
+    #######################################################
+
+    #print("Content-type: application/json")  #error
+    print('Content-type: text/html\nAccess-Control-Allow-Origin: *\n')
+    print("\n\n")
+    print(json.JSONEncoder().encode(response))
+    print('\n')
+
+
+################################################
+#
+#  main実行
+#
+################################################
+if __name__ == '__main__':
+    main()

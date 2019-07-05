@@ -289,17 +289,33 @@ function get_data3() {
 
 
 document.getElementById("finishbtn").onclick = function(){
-    var textData = JSON.stringify("qq");
-    $.ajax({
-      type:'POST',
-      url:'/postText',
-      data:textData,
-      contentType:'application/json',
-      success:function(data) {
-        var result = JSON.parse(data.ResultSet).result;
-        $("#hello").text(result);
-      }
-    });
-    return false;
-};
+    console.log('aa')
+
+
+        //レスポンス
+        var response = {};
+        console.log('bb')
+        //リクエスト
+        let request = {para_1 : get_data1()};
+                      
+    
+        //ajax
+        $.ajax({
+          type        : "POST",
+          url         :'index.py',
+          data        : JSON.stringify(request),  //object -> json
+          async       : false,                    //true:非同期(デフォルト), false:同期
+          dataType    : "json",
+          success     : function(data) {
+            //data = JSON.parse(data);  //error
+            response = data;
+          },
+          error       : function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("リクエスト時になんらかのエラーが発生しました\n"  + textStatus +":\n" + errorThrown);
+          }
+        });
+    
+        //表示
+        console.log(response);
+    };
 
