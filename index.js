@@ -311,6 +311,7 @@ document.getElementById("finishbtn").onclick = function(){
             response = data;
           },
           error       : function(XMLHttpRequest, textStatus, errorThrown) {
+              console.log(XMLHttpRequest);
             console.log("リクエスト時になんらかのエラーが発生しました\n"  + textStatus +":\n" + errorThrown);
           }
         });
