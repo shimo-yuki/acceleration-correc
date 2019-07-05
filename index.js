@@ -286,11 +286,38 @@ function get_data3() {
 
 
 /////////////////////////////////////////////////////////
+function out(array){
+    $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
 
-
+}
 document.getElementById("finishbtn").onclick = function(){
-    console.log('aa')
     
+        console.log(realZ)
+    var phase = fftZ.phase(realZ, imaginaryZ);
+    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
+    var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
+    var periods = fftZ.periods(realZ, imaginaryZ, 1);
+    console.log(frequencies)
+    console.log(amplitude)
+    ctbar = document.getElementById("result").getContext("2d");
+    myBar = new Chart(ctbar, {
+        type: "line",    // ★必須　グラフの種類
+        data: {
+            labels:  frequencies,  // Ｘ軸のラベル
+            datasets: [
+                {
+                    label: "FFT",                            // 系列名
+                    data: amplitude                   // ★必須　系列Ａのデータ
+                }
+            ]
+        }
+});
+
+        fftX.calc( -1, realZ, imaginaryZ);
     
-};
+        console.timeEnd('fft');
+    var txt = document.getElementById("console");  
+    txt.innerHTML = "real: " + realZ + "<br>"       
+                  + "imaginary: " + imaginaryZ ;
+}
 
