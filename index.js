@@ -256,7 +256,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        // realZ.push(get_data3());
+                        realZ.push(get_data3());
                     }
                 }
             }]
@@ -288,10 +288,9 @@ function out(array){
 
 }
 document.getElementById("finishbtn").onclick = function(){
-    for(var i = 0; i < 100; i++){
-    realZ.push(Math.sin(i));
-    }
-    imaginaryZ = new Array(realZ.length);
+    // for(var i = 0; i < 100; i++){
+    // realZ.push(Math.sin(i));
+    // }
     console.log(realZ)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
@@ -306,7 +305,7 @@ document.getElementById("finishbtn").onclick = function(){
             ]
         }
 });
-    
+    imaginaryZ = new Array(realZ.length);
     imaginaryZ.fill(0);
     originalZ = realZ.slice(0); 
         fftZ.calc(1, realZ, imaginaryZ)
