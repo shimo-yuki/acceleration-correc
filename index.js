@@ -257,9 +257,6 @@ myBar = new Chart(ctz, {
                             y: get_data3()
                         })
                         realZ.push(get_data3());
-                        imaginaryZ = new Array(realZ.length);
-                        imaginaryZ.fill(0);
-                        originalZ = realZ.slice(0);   
                     }
                 }
             }]
@@ -291,14 +288,33 @@ function out(array){
 
 }
 document.getElementById("finishbtn").onclick = function(){
-    
-        console.log(realZ)
+
+   
+    imaginaryZ = new Array(realZ.length);
+    console.log(imaginaryZ)
+    ctrbar = document.getElementById("result1").getContext("2d");
+    myBar = new Chart(ctrbar, {
+        type: "line",    // ★必須　グラフの種類
+        data: {
+            labels:  imaginaryZ,  // Ｘ軸のラベル
+            datasets: [
+                {
+                    label: "FFT",                            // 系列名
+                    data: realZ                   // ★必須　系列Ａのデータ
+                }
+            ]
+        }
+});
+    imaginaryZ.fill(0);
+    originalZ = realZ.slice(0); 
+        fftZ.calc(1, realZ, imaginaryZ)
     var phase = fftZ.phase(realZ, imaginaryZ);
     var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
     var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
     var periods = fftZ.periods(realZ, imaginaryZ, 1);
     console.log(frequencies)
     console.log(amplitude)
+
     ctbar = document.getElementById("result").getContext("2d");
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
