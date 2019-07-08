@@ -256,7 +256,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        realZ.push(get_data3());
+                        // realZ.push(get_data3());
                     }
                 }
             }]
