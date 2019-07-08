@@ -289,6 +289,7 @@ function out(array){
 }
 document.getElementById("finishbtn").onclick = function(){
 
+
    
     imaginaryZ = new Array(realZ.length);
     console.log(imaginaryZ)
@@ -308,13 +309,26 @@ document.getElementById("finishbtn").onclick = function(){
     imaginaryZ.fill(0);
     originalZ = realZ.slice(0); 
         fftZ.calc(1, realZ, imaginaryZ)
+    
+    // var realZ=[];
+    // for (var i=0;i<100;i+=1){
+    //   if (i%2==1){
+    //     realZ.push(1) 
+    //   } else{
+    //     realZ.push(1) 
+    //   }
+    // }
+    //  var imaginaryZ = new Array(realZ.length); 
+    //  imaginaryZ.fill(0); 
+    //     console.log("realz");
+    //     console.log(realZ);
+    //     console.log(realZ,imaginaryZ);
     var phase = fftZ.phase(realZ, imaginaryZ);
-    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
+    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 0.01); //周波数
     var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
     var periods = fftZ.periods(realZ, imaginaryZ, 1);
     console.log(frequencies)
     console.log(amplitude)
-
     ctbar = document.getElementById("result").getContext("2d");
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
