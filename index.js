@@ -299,7 +299,7 @@ document.getElementById("finishbtn").onclick = function(){
                 {
                     fill: false,
                     borderColor : "rgba(0, 0, 0)",
-                    label: "FFT",                            // 系列名
+                    label: "sin波",                            // 系列名
                     data: realX                   // ★必須　系列Ａのデータ
                 }
             ],
@@ -308,25 +308,27 @@ document.getElementById("finishbtn").onclick = function(){
             title: {                           //タイトル設定
                 display: true,                 //表示設定
                 fontSize: 18,                  //フォントサイズ
-                text: '時間軸に対する加速度'                //ラベル
+                text: '時間軸に対するsin波'                //ラベル
             },
-        },
-        yAxes: [{                      //y軸設定
-            display: true,             //表示設定
-            scaleLabel: {              //軸ラベル設定
-               display: true,          //表示設定
-               labelString: '加速度(m/s^2)',  //ラベル
-               fontSize: 18               //フォントサイズ
-            },
-        }],
-        xAxes: [{ 
-            display: true,                //表示設定
-                scaleLabel: {                 //軸ラベル設定
-                   display: true,             //表示設定
-                   labelString: '秒(s)',  //ラベル
-                   fontSize: 18               //フォントサイズ
+        scales: {
+            yAxes: [{                      //y軸設定
+                display: true,             //表示設定
+                scaleLabel: {              //軸ラベル設定
+                display: true,          //表示設定
+                labelString: 'sin波',  //ラベル
+                fontSize: 18               //フォントサイズ
                 },
-            }]
+            }],
+            xAxes: [{ 
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                    display: true,             //表示設定
+                    labelString: '秒(s)',  //ラベル
+                    fontSize: 18               //フォントサイズ
+                    },
+                }]
+            }
+        }
     });
     imaginaryX = new Array(realX.length);
     imaginaryX.fill(0);
@@ -352,23 +354,32 @@ document.getElementById("finishbtn").onclick = function(){
                 }
             ]
         },
-        yAxes: [{                      //y軸設定
-            display: true,             //表示設定
-            scaleLabel: {              //軸ラベル設定
-               display: true,          //表示設定
-               labelString: '振幅',  //ラベル
-               fontSize: 18               //フォントサイズ
+        options: {
+            title: {                           //タイトル設定
+                display: true,                 //表示設定
+                fontSize: 18,                  //フォントサイズ
+                text: 'FFTの実行結果'                //ラベル
             },
-        }],
-        xAxes: [{ 
-            display: true,                //表示設定
-                scaleLabel: {                 //軸ラベル設定
-                   display: true,             //表示設定
-                   labelString: '周波数(Hz)',  //ラベル
-                   fontSize: 18               //フォントサイズ
+        scales: {
+            yAxes: [{                      //y軸設定
+                display: true,             //表示設定
+                scaleLabel: {              //軸ラベル設定
+                display: true,          //表示設定
+                labelString: '振幅',  //ラベル
+                fontSize: 18               //フォントサイズ
                 },
-            }]
-});
+            }],
+            xAxes: [{ 
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                    display: true,             //表示設定
+                    labelString: '周波数(Hz)',  //ラベル
+                    fontSize: 18               //フォントサイズ
+                    },
+                }]
+            }
+        }
+    });
 
     
         console.timeEnd('fft');
