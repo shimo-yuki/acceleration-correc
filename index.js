@@ -114,7 +114,7 @@ myBar = new Chart(ctx, {
                             x: Date.now(),
                             y: get_data1()
                         })
-                        // realX.push(get_data1());  
+                         realX.push(get_data1());  
                     }
                 }
             }]
@@ -285,9 +285,9 @@ function out(array){
 
 }
 document.getElementById("finishbtn").onclick = function(){
-    for(var i = 0; i < 100; i++){
-     realX.push(Math.sin(i));
-     }
+    // for(var i = 0; i < 100; i++){
+    // realX.push(Math.sin(i));
+    // }
     console.log(realX)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
@@ -299,7 +299,7 @@ document.getElementById("finishbtn").onclick = function(){
                 {
                     fill: false,
                     borderColor : "rgba(0, 0, 0)",
-                    label: "sin波",                            // 系列名
+                    label: "加速度",                            // 系列名
                     data: realX                   // ★必須　系列Ａのデータ
                 }
             ],
@@ -308,14 +308,14 @@ document.getElementById("finishbtn").onclick = function(){
             title: {                           //タイトル設定
                 display: true,                 //表示設定
                 fontSize: 18,                  //フォントサイズ
-                text: '時間軸に対するsin波'                //ラベル
+                text: '時間軸に対する加速度'                //ラベル
             },
         scales: {
             yAxes: [{                      //y軸設定
                 display: true,             //表示設定
                 scaleLabel: {              //軸ラベル設定
                 display: true,          //表示設定
-                labelString: 'sin波',  //ラベル
+                labelString: '加速度( m/s^2)',  //ラベル
                 fontSize: 18               //フォントサイズ
                 },
             }],
@@ -323,7 +323,7 @@ document.getElementById("finishbtn").onclick = function(){
                 display: true,                //表示設定
                     scaleLabel: {                 //軸ラベル設定
                     display: true,             //表示設定
-                    labelString: '秒(s)',  //ラベル
+                    labelString: '時間(s)',  //ラベル
                     fontSize: 18               //フォントサイズ
                     },
                 }]
