@@ -78,15 +78,11 @@ myBar = new Chart(ctx, {
             text: 'X軸方向成分の加速度'                //ラベル
         },
         scales: {
-            yAxes: [                          
-                {
-                    ticks: {                       
-                        min: -10,                      
-                        max: 10                 
-                    }
-                }
-            ],
-            yAxes: [{                      //y軸設定
+            yAxes: [{    
+                ticks: {                       
+                    min: -10,                      
+                    max: 10                 
+                },                  //y軸設定
                 display: true,             //表示設定
                 scaleLabel: {              //軸ラベル設定
                    display: true,          //表示設定
