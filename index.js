@@ -114,10 +114,7 @@ myBar = new Chart(ctx, {
                             x: Date.now(),
                             y: get_data1()
                         })
-                        realX.push(get_data1());
-                        imaginaryX = new Array(realX.length);
-                        imaginaryX.fill(0);
-                        originalX = realX.slice(0);   
+                        // realX.push(get_data1());  
                     }
                 }
             }]
@@ -256,7 +253,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        realZ.push(get_data3());
+                       // realZ.push(get_data3());
                     }
                 }
             }]
@@ -288,31 +285,57 @@ function out(array){
 
 }
 document.getElementById("finishbtn").onclick = function(){
-    // for(var i = 0; i < 100; i++){
-    // realZ.push(Math.sin(i));
-    // }
-    console.log(realZ)
+    for(var i = 0; i < 100; i++){
+     realX.push(Math.sin(i));
+     }
+    console.log(realX)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
-        type: "line",    // ★必須　グラフの種類
+        type: 'line', 
+        fill: false,
         data: {
             labels:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35,36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,49, 50, 52, 53, 53, 54, 55, 56, 57,58,59, 60, 61, 62, 63,64,65,6,67,8,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],  // Ｘ軸のラベル
             datasets: [
                 {
+                    fill: false,
+                    borderColor : "rgba(0, 0, 0)",
                     label: "FFT",                            // 系列名
-                    data: realZ                   // ★必須　系列Ａのデータ
+                    data: realX                   // ★必須　系列Ａのデータ
                 }
-            ]
-        }
-});
-    imaginaryZ = new Array(realZ.length);
-    imaginaryZ.fill(0);
-    originalZ = realZ.slice(0); 
-        fftZ.calc(1, realZ, imaginaryZ)
-    var phase = fftZ.phase(realZ, imaginaryZ);
-    var frequencies = fftZ.frequencies(realZ, imaginaryZ, 1); //周波数
-    var amplitude = fftZ.amplitude(realZ, imaginaryZ); //振幅
-    var periods = fftZ.periods(realZ, imaginaryZ, 1);
+            ],
+        },
+        options: {
+            title: {                           //タイトル設定
+                display: true,                 //表示設定
+                fontSize: 18,                  //フォントサイズ
+                text: '時間軸に対する加速度'                //ラベル
+            },
+        },
+        yAxes: [{                      //y軸設定
+            display: true,             //表示設定
+            scaleLabel: {              //軸ラベル設定
+               display: true,          //表示設定
+               labelString: '加速度(m/s^2)',  //ラベル
+               fontSize: 18               //フォントサイズ
+            },
+        }],
+        xAxes: [{ 
+            display: true,                //表示設定
+                scaleLabel: {                 //軸ラベル設定
+                   display: true,             //表示設定
+                   labelString: '秒(s)',  //ラベル
+                   fontSize: 18               //フォントサイズ
+                },
+            }]
+    });
+    imaginaryX = new Array(realX.length);
+    imaginaryX.fill(0);
+    originalX = realX.slice(0); 
+    fftX.calc(1, realX, imaginaryX)
+    var phase = fftX.phase(realX, imaginaryX);
+    var frequencies = fftX.frequencies(realX, imaginaryX, 1); //周波数
+    var amplitude = fftX.amplitude(realX, imaginaryX); //振幅
+    var periods = fftX.periods(realX, imaginaryX, 1);
     console.log(frequencies)
     console.log(amplitude)
 
@@ -323,14 +346,30 @@ document.getElementById("finishbtn").onclick = function(){
             labels:  frequencies,  // Ｘ軸のラベル
             datasets: [
                 {
-                    label: "FFT",                            // 系列名
+                    label: "FFT実行結果",
+                    fill: false,                            // 系列名
                     data: amplitude                   // ★必須　系列Ａのデータ
                 }
             ]
-        }
+        },
+        yAxes: [{                      //y軸設定
+            display: true,             //表示設定
+            scaleLabel: {              //軸ラベル設定
+               display: true,          //表示設定
+               labelString: '振幅',  //ラベル
+               fontSize: 18               //フォントサイズ
+            },
+        }],
+        xAxes: [{ 
+            display: true,                //表示設定
+                scaleLabel: {                 //軸ラベル設定
+                   display: true,             //表示設定
+                   labelString: '周波数(Hz)',  //ラベル
+                   fontSize: 18               //フォントサイズ
+                },
+            }]
 });
 
-        fftX.calc( -1, realZ, imaginaryZ);
     
         console.timeEnd('fft');
     var txt = document.getElementById("console");  
