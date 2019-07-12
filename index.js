@@ -241,7 +241,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                       // realZ.push(get_data3());
+                        realZ.push(get_data3());
                     }
                 }
             }]
@@ -288,7 +288,7 @@ document.getElementById("finishbtn").onclick = function(){
                     fill: false,
                     borderColor : "rgba(0, 0, 0)",
                     label: "加速度",                            // 系列名
-                    data: realX                   // ★必須　系列Ａのデータ
+                    data: realZ                   // ★必須　系列Ａのデータ
                 }
             ],
         },
@@ -318,14 +318,14 @@ document.getElementById("finishbtn").onclick = function(){
             }
         }
     });
-    imaginaryX = new Array(realX.length);
+    imaginaryX = new Array(realZ.length);
     imaginaryX.fill(0);
-    originalX = realX.slice(0); 
-    fftX.calc(1, realX, imaginaryX)
-    var phase = fftX.phase(realX, imaginaryX);
-    var frequencies = fftX.frequencies(realX, imaginaryX, 1); //周波数
-    var amplitude = fftX.amplitude(realX, imaginaryX); //振幅
-    var periods = fftX.periods(realX, imaginaryX, 1);
+    originalX = realZ.slice(0); 
+    fftX.calc(1, realZ, imaginaryX)
+    var phase = fftX.phase(realZ, imaginaryX);
+    var frequencies = fftX.frequencies(realZ, imaginaryX, 1); //周波数
+    var amplitude = fftX.amplitude(realZ, imaginaryX); //振幅
+    var periods = fftX.periods(realZ, imaginaryX, 1);
     console.log(frequencies)
     console.log(amplitude)
 
