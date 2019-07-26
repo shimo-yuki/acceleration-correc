@@ -110,7 +110,7 @@ myBar = new Chart(ctx, {
                             x: Date.now(),
                             y: get_data1()
                         })
-                         realX.push(get_data1());  
+                         //realX.push(get_data1());  
                     }
                 }
             }]
@@ -241,7 +241,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        realZ.push(get_data3());
+                        //realZ.push(get_data3());
                     }
                 }
             }]
@@ -273,24 +273,27 @@ function out(array){
 
 }
 document.getElementById("finishbtn").onclick = function(){
-    // for(var i = 0; i < 100; i++){
-    // realX.push(Math.sin(i));
-    // }
+    for(var i = 0; i < 100; i++){
+     realZ.push(Math.sin(2*Math.PI*(1/20)*i));
+     }
     console.log(realX)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
         type: 'line', 
         fill: false,
         data: {
-            labels:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35,36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,49, 50, 52, 53, 53, 54, 55, 56, 57,58,59, 60, 61, 62, 63,64,65,6,67,8,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],  // Ｘ軸のラベル
+            //labels:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35,36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,49, 50, 52, 53, 53, 54, 55, 56, 57,58,59, 60, 61, 62, 63,64,65,6,67,8,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],  // Ｘ軸のラベル
             datasets: [
                 {
                     fill: false,
                     borderColor : "rgba(0, 0, 0)",
                     label: "加速度",                            // 系列名
-                    data: realZ                   // ★必須　系列Ａのデータ
-                }
-            ],
+                    data: [{
+                        x: newDate(0),
+                        y: realZ                  // ★必須　系列Ａのデータ
+                }]
+            
+            }]
         },
         options: {
             title: {                           //タイトル設定
@@ -307,17 +310,23 @@ document.getElementById("finishbtn").onclick = function(){
                 fontSize: 18               //フォントサイズ
                 },
             }],
-            xAxes: [{ 
-                display: true,                //表示設定
-                    scaleLabel: {                 //軸ラベル設定
-                    display: true,             //表示設定
-                    labelString: '時間(s)',  //ラベル
-                    fontSize: 18               //フォントサイズ
-                    },
-                }]
-            }
+            xAxes: [{
+                type: 'time',
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                },
+                ticks: {
+                    major: {
+                        fontStyle: 'bold',
+                        fontColor: '#FF0000'
+                    }
+                }
+            }]
         }
-    });
+    }
+});
     imaginaryX = new Array(realZ.length);
     imaginaryX.fill(0);
     originalX = realZ.slice(0); 
@@ -332,7 +341,7 @@ document.getElementById("finishbtn").onclick = function(){
     ctbar = document.getElementById("result").getContext("2d");
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
-        data: {
+        data: {      
             labels:  frequencies,  // Ｘ軸のラベル
             datasets: [
                 {
