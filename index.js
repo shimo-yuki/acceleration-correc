@@ -241,7 +241,7 @@ myBar = new Chart(ctz, {
                             x: Date.now(),
                             y: get_data3()
                         })
-                        //realZ.push(get_data3());
+                        realZ.push(get_data3());
                     }
                 }
             }]
@@ -272,13 +272,22 @@ function out(array){
     $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
 
 }
-var time = []
+var time = [], amp = []
 document.getElementById("finishbtn").onclick = function(){
-    for(var i = 0; i < 100; i++){
-     realZ.push(Math.sin(2*Math.PI*(1/20)*i));
-     time.push(i * 5 / 100)
-     }
-    console.log(time)
+     for(var i = 0; i < 100; i++){
+//      realZ.push(Math.sin(2*Math.PI*(1/20)*i));
+      time.push(i * 5 / 100)
+      }
+//      for(var i = 0; i < 50; i++){
+//      amp.push(i * 25 / 10)
+//      }
+    console.log(realZ)
+    var txt = document.getElementById("console");
+    txt.innerHTML = "real: " + realZ + "<br>"
+                  + "imaginary: " + imaginaryZ ;
+
+
+
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
         type: 'line', 
@@ -334,7 +343,7 @@ document.getElementById("finishbtn").onclick = function(){
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
         data: {
-            labels:  frequencies,  // Ｘ軸のラベル
+            labels:  amp,  // Ｘ軸のラベル
             datasets: [
                 {
                     label: "FFT実行結果",
@@ -369,10 +378,4 @@ document.getElementById("finishbtn").onclick = function(){
             }
         }
     });
-
-        console.timeEnd('fft');
-    var txt = document.getElementById("console");
-    txt.innerHTML = "real: " + realZ + "<br>"
-                  + "imaginary: " + imaginaryZ ;
-}
-
+};
