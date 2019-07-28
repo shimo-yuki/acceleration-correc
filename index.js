@@ -4,7 +4,7 @@ var realX = [], realY = [], realZ = [], imaginaryX = [], imaginaryY = [], imagin
 var fftX = new FFT();
 var fftY = new FFT();
 var fftZ = new FFT();
-    
+
 window.addEventListener("devicemotion", (dat) => {
     var ua = [
 		"iPod",
@@ -12,7 +12,7 @@ window.addEventListener("devicemotion", (dat) => {
 		"iPhone",
 		"Android"
     ]
-	
+
 	for (var i = 0; i < ua.length; i++) {
 		if (navigator.userAgent.indexOf(ua[i]) > 0) {
             aX = -dat.accelerationIncludingGravity.x;    // x軸の重力加速度（Android と iOSでは正負が逆）
@@ -25,12 +25,12 @@ window.addEventListener("devicemotion", (dat) => {
     aY = dat.accelerationIncludingGravity.y;    // y軸の重力加速度（Android と iOSでは正負が逆）
     aZ = dat.accelerationIncludingGravity.z;    // z軸の重力加速度（Android と iOSでは正負が逆）
 });
- 
+
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
 var timer = window.setInterval(() => {
     displayData();      // displayData 関数を実行
 }, 100); // 33msごとに（1秒間に約100回）
- 
+
 // データを表示する displayData 関数
 function displayData() {
     var txt = document.getElementById("txt");   // データを表示するdiv要素の取得
@@ -49,7 +49,7 @@ function getUserType() {
 		"Android"
     ]
 
-	
+
 	for (var i = 0; i < ua.length; i++) {
 		if (navigator.userAgent.indexOf(ua[i]) > 0) {
 			return ua[i]
@@ -60,7 +60,7 @@ function getUserType() {
 
 ctx = document.getElementById("canvasX").getContext("2d");
 myBar = new Chart(ctx, {
-    type: 'line', 
+    type: 'line',
     fill: false,
     data: {
         datasets: [
@@ -78,10 +78,10 @@ myBar = new Chart(ctx, {
             text: 'X軸方向成分の加速度'                //ラベル
         },
         scales: {
-            yAxes: [{    
-                ticks: {                       
-                    min: -10,                      
-                    max: 10                 
+            yAxes: [{
+                ticks: {
+                    min: -10,
+                    max: 10
                 },                  //y軸設定
                 display: true,             //表示設定
                 scaleLabel: {              //軸ラベル設定
@@ -90,13 +90,13 @@ myBar = new Chart(ctx, {
                    fontSize: 18               //フォントサイズ
                 },
             }],
-            xAxes: [{ 
+            xAxes: [{
                 display: true,                //表示設定
                     scaleLabel: {                 //軸ラベル設定
                        display: true,             //表示設定
                        labelString: '秒(s)',  //ラベル
                        fontSize: 18               //フォントサイズ
-                    },                         
+                    },   
                 type: 'realtime',  
                 realtime: {         
                     duration: 4000,      
@@ -272,27 +272,25 @@ function out(array){
     $("#console").html( $("#console").html() +"<br/><br/>" +  JSON.stringify(array)  );
 
 }
+var time = []
 document.getElementById("finishbtn").onclick = function(){
     for(var i = 0; i < 100; i++){
      realZ.push(Math.sin(2*Math.PI*(1/20)*i));
+     time.push(i * 5 / 100)
      }
-    console.log(realX)
+    console.log(time)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
         type: 'line', 
         fill: false,
         data: {
-            //labels:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35,36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,49, 50, 52, 53, 53, 54, 55, 56, 57,58,59, 60, 61, 62, 63,64,65,6,67,8,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],  // Ｘ軸のラベル
+            labels: time,
             datasets: [
                 {
                     fill: false,
                     borderColor : "rgba(0, 0, 0)",
                     label: "加速度",                            // 系列名
-                    data: [{
-                        x: newDate(0),
-                        y: realZ                  // ★必須　系列Ａのデータ
-                }]
-            
+                    data: realZ
             }]
         },
         options: {
@@ -310,20 +308,14 @@ document.getElementById("finishbtn").onclick = function(){
                 fontSize: 18               //フォントサイズ
                 },
             }],
-            xAxes: [{
-                type: 'time',
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                },
-                ticks: {
-                    major: {
-                        fontStyle: 'bold',
-                        fontColor: '#FF0000'
-                    }
-                }
-            }]
+             xAxes: [{
+                display: true,                //表示設定
+                    scaleLabel: {                 //軸ラベル設定
+                    display: true,             //表示設定
+                    labelString: 'データ数',  //ラベル
+                    fontSize: 18               //フォントサイズ
+                    },
+                }]
         }
     }
 });
@@ -341,7 +333,7 @@ document.getElementById("finishbtn").onclick = function(){
     ctbar = document.getElementById("result").getContext("2d");
     myBar = new Chart(ctbar, {
         type: "line",    // ★必須　グラフの種類
-        data: {      
+        data: {
             labels:  frequencies,  // Ｘ軸のラベル
             datasets: [
                 {
@@ -366,7 +358,7 @@ document.getElementById("finishbtn").onclick = function(){
                 fontSize: 18               //フォントサイズ
                 },
             }],
-            xAxes: [{ 
+            xAxes: [{
                 display: true,                //表示設定
                     scaleLabel: {                 //軸ラベル設定
                     display: true,             //表示設定
@@ -378,10 +370,9 @@ document.getElementById("finishbtn").onclick = function(){
         }
     });
 
-    
         console.timeEnd('fft');
-    var txt = document.getElementById("console");  
-    txt.innerHTML = "real: " + realZ + "<br>"       
+    var txt = document.getElementById("console");
+    txt.innerHTML = "real: " + realZ + "<br>"
                   + "imaginary: " + imaginaryZ ;
 }
 
