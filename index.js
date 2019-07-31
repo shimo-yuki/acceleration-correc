@@ -280,6 +280,11 @@ document.getElementById("finishbtn").onclick = function(){
       time.push(i * 5 / 100)
       }
     // console.log(time)
+    var txt = document.getElementById("console");
+    txt.innerHTML = "real: " + realZ + "<br>"
+                  + "imaginary: " + imaginaryZ ;
+
+
 
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
