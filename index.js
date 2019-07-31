@@ -29,6 +29,7 @@ window.addEventListener("devicemotion", (dat) => {
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
 var timer = window.setInterval(() => {
     displayData();      // displayData 関数を実行
+    realZ.push(aZ)
 }, 100); // 33msごとに（1秒間に約100回）
 
 // データを表示する displayData 関数
@@ -274,11 +275,11 @@ function out(array){
 }
 var time = []
 document.getElementById("finishbtn").onclick = function(){
-    for(var i = 0; i < 100; i++){
-     realZ.push(Math.sin(2*Math.PI*(1/20)*i));
-     time.push(i * 5 / 100)
-     }
-    console.log(time)
+     for(var i = 0; i < 100; i++){
+    //  realZ.push(Math.sin(2*Math.PI*(1/20)*i));
+      time.push(i * 5 / 100)
+      }
+    // console.log(time)
     ctrbar = document.getElementById("result1").getContext("2d");
     myBar = new Chart(ctrbar, {
         type: 'line', 
