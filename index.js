@@ -28,10 +28,9 @@ window.addEventListener("devicemotion", (dat) => {
 
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
 var timer = window.setInterval(() => {
-    // displayData 関数を実行
     realZ.push(aZ)
-
-}, 10); // 33msごとに（1秒間に約100回）
+    console.log('a')
+}, 100); // 33msごとに（1秒間に約100回）
 
 // データを表示する displayData 関数
 function displayData() {
