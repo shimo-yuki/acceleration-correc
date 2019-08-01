@@ -30,7 +30,8 @@ window.addEventListener("devicemotion", (dat) => {
 var timer = window.setInterval(() => {
     displayData();      // displayData 関数を実行
     realZ.push(aZ)
-}, 100); // 33msごとに（1秒間に約100回）
+    console.log('a')
+}, 10); // 33msごとに（1秒間に約100回）
 
 // データを表示する displayData 関数
 function displayData() {
